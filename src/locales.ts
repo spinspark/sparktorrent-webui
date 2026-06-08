@@ -1,4 +1,4 @@
-import {ref, computed, type ComputedRef} from 'vue'
+import { ref, computed, type ComputedRef } from 'vue'
 
 // TODO: store preferences, and retrieve settings from qbittorrent
 type LocaleDictionary = {
@@ -66,7 +66,7 @@ export function t(path: string): ComputedRef<string> {
 function initializeLanguage(): void {
   let targetLocale = 'en'
 
-  const browserLocale = navigator.language.toLocaleLowerCase();
+  const browserLocale = navigator.language.toLocaleLowerCase()
   const shortLocale = browserLocale.split('-')[0] || 'en'
 
   if (SUPPORTED_LANGUAGES.includes(browserLocale)) {

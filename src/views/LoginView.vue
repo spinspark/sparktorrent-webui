@@ -60,7 +60,7 @@ function clearWarnings() {
             @input="clearWarnings"
             type="text"
             class="form-input"
-            :class="{ 'missing': isUsernameMissing }"
+            :class="{ missing: isUsernameMissing }"
             :disabled="isLoading"
             autocomplete="username"
           />
@@ -73,7 +73,7 @@ function clearWarnings() {
             @input="clearWarnings"
             type="password"
             class="form-input"
-            :class="{ 'missing': isPasswordMissing }"
+            :class="{ missing: isPasswordMissing }"
             :disabled="isLoading"
             autocomplete="current-password"
           />

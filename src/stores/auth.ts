@@ -48,7 +48,6 @@ export const useAuthStore = defineStore('auth', () => {
         console.log('Session restored')
         isAuthenticated.value = true
       }
-
     } catch (err) {
       console.warn('Stored session cookie has expired or was rejected', err)
       localStorage.removeItem(REMEMBER_KEY)
