@@ -1,6 +1,10 @@
 <script setup lang="ts">
 import { watchEffect } from 'vue'
 import { isLocaleLoaded, t } from '@/locales.ts'
+import LoginView from '@/views/LoginView.vue'
+import { useAuthStore } from '@/stores/auth.ts'
+
+const authStore = useAuthStore()
 
 watchEffect(() => {
   if (isLocaleLoaded.value) {
@@ -10,11 +14,7 @@ watchEffect(() => {
 </script>
 
 <template>
-  <h1>You did it!</h1>
-  <p>
-    Visit <a href="https://vuejs.org/" target="_blank" rel="noopener">vuejs.org</a> to read the
-    documentation
-  </p>
+  <LoginView v-if="!authStore.isAuthenticated" />
 </template>
 
 <style scoped></style>
