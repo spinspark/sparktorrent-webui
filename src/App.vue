@@ -1,4 +1,13 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { watchEffect } from 'vue'
+import { isLocaleLoaded, t } from '@/locales.ts'
+
+watchEffect(() => {
+  if (isLocaleLoaded.value) {
+    document.title = t('system.title').value
+  }
+})
+</script>
 
 <template>
   <h1>You did it!</h1>
