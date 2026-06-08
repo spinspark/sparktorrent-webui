@@ -2,11 +2,21 @@
 <html lang="">
   <head>
     <meta charset="UTF-8">
-    <link rel="icon" href="/favicon.ico">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vite App</title>
+    <meta name="color-scheme" content="light dark">
+
+    <meta name="application-name" content="qBitTorrent">
+    <meta name="description" content="qBittorrent WebUI">
+
+    <link rel="icon" type="image/png" href="/images/qbittorrent32.png" sizes="32x32">
+    <link rel="icon" type="image/svg+xml" href="/images/qbittorrent-tray.svg" sizes="any">
+
+    <title>qBittorrent WebUI</title>
   </head>
   <body>
+    <noscript class="noscript">
+      <h1>JavaScript Required! You must enable JavaScript for the WebUI to work properly</h1>
+    </noscript>
     <div id="app"></div>
     <script type="module" src="/src/main.ts"></script>
   </body>
