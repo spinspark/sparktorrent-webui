@@ -13,12 +13,8 @@ export const useAuthStore = defineStore('auth', () => {
   const isAuthenticated = ref<boolean>(false)
 
   async function login(credentials: LoginCredentials, rememberMe: boolean): Promise<void> {
-    const requestBody = new URLSearchParams()
-    requestBody.append('username', credentials.username)
-    requestBody.append('password', credentials.password)
-
     try {
-      const response = await api.post('/auth/login', requestBody, {
+      const response = await api.post('/auth/login', credentials, {
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded',
         },
