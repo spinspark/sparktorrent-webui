@@ -1,10 +1,13 @@
 <script setup lang="ts">
 import { ref } from 'vue'
+import { useAppStore } from '@/stores/app.ts'
 import IconAll from '@/components/icons/IconAll.vue'
 import IconArrowDown from '@/components/icons/IconArrowDown.vue'
 import IconCheck from '@/components/icons/IconCheck.vue'
 
-const currentFilter = ref<string>('all')
+const appStore = useAppStore()
+
+const currentFilter = ref('all')
 
 const setFilter = (filterName: string) => {
   currentFilter.value = filterName
@@ -15,7 +18,9 @@ const setFilter = (filterName: string) => {
   <aside class="sidebar">
     <div class="brand-section">
       <img src="/images/qbittorrent-tray.svg" class="app-logo" alt="qBittorrent Logo" />
-      <h1 class="brand-name">qBittorrent <span class="version-tag">v1.0.0</span></h1>
+      <h1 class="brand-name">
+        qBittorrent <span class="version-tag">{{ appStore.version }}</span>
+      </h1>
     </div>
     <nav class="nav-menu">
       <p class="menu-label">Status Categories</p>

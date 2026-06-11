@@ -1,6 +1,6 @@
 import { ref } from 'vue'
 import { defineStore } from 'pinia'
-import { api } from '@/services/api'
+import api from '@/services/api'
 
 type LoginCredentials = {
   username: string

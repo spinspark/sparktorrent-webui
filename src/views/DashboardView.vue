@@ -1,11 +1,14 @@
-<script lang="ts">
-import { defineComponent } from 'vue'
+<script setup lang="ts">
+import { onMounted } from 'vue'
+import { useAppStore } from '@/stores/app.ts'
 import GlobalHeader from '@/components/GlobalHeader.vue'
 import SidebarNav from '@/components/SidebarNav.vue'
 import TorrentGrid from '@/components/TorrentGrid.vue'
 
-export default defineComponent({
-  components: { TorrentGrid, SidebarNav, GlobalHeader },
+const appStore = useAppStore()
+
+onMounted(async () => {
+  await appStore.fetchVersion()
 })
 </script>
 
