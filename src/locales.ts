@@ -7,11 +7,11 @@ type LocaleDictionary = {
 
 type LocaleNode = LocaleDictionary | string | undefined
 
-export const currentLocale = ref<string>('en')
-export const isLocaleLoaded = ref<boolean>(false)
+export const currentLocale = ref('en')
+export const isLocaleLoaded = ref(false)
 
 const loadedMessages = new Map<string, LocaleDictionary>()
-const SUPPORTED_LANGUAGES = ['en', 'es', 'fr-ca', 'fr-fr', 'ja']
+const SUPPORTED_LANGUAGES = new Set(['en', 'es', 'fr-ca', 'fr-fr', 'ja'])
 
 async function loadLanguageAsync(locale: string): Promise<void> {
   if (loadedMessages.has(locale)) {
@@ -26,8 +26,8 @@ async function loadLanguageAsync(locale: string): Promise<void> {
     loadedMessages.set(locale, messages.default)
     currentLocale.value = locale
     isLocaleLoaded.value = true
-  } catch (err) {
-    console.error(`Failed to retrieve asset: ${locale}.json`, err)
+  } catch (error) {
+    console.error(`Failed to retrieve asset: ${locale}.json`, error)
 
     // Fail-safe
     if (locale !== 'en') {
@@ -39,7 +39,7 @@ async function loadLanguageAsync(locale: string): Promise<void> {
 export async function switchLanguage(locale: string): Promise<void> {
   const normalizedLocale = locale.toLocaleLowerCase()
 
-  const targetLocale = SUPPORTED_LANGUAGES.includes(normalizedLocale) ? normalizedLocale : 'en'
+  const targetLocale = SUPPORTED_LANGUAGES.has(normalizedLocale) ? normalizedLocale : 'en'
 
   await loadLanguageAsync(targetLocale)
 }
@@ -63,20 +63,20 @@ export function t(path: string): ComputedRef<string> {
   })
 }
 
-function initializeLanguage(): void {
+function initializeLanguage() {
   let targetLocale = 'en'
 
   const browserLocale = navigator.language.toLocaleLowerCase()
   const shortLocale = browserLocale.split('-')[0] || 'en'
 
-  if (SUPPORTED_LANGUAGES.includes(browserLocale)) {
+  if (SUPPORTED_LANGUAGES.has(browserLocale)) {
     targetLocale = browserLocale
-  } else if (SUPPORTED_LANGUAGES.includes(shortLocale)) {
+  } else if (SUPPORTED_LANGUAGES.has(shortLocale)) {
     targetLocale = shortLocale
   }
 
-  switchLanguage(targetLocale).catch((err) => {
-    console.error(`Failed to load locale: ${targetLocale}`, err)
+  switchLanguage(targetLocale).catch((error) => {
+    console.error(`Failed to load locale: ${targetLocale}`, error)
   })
 }
 

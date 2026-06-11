@@ -10,7 +10,7 @@ type LoginCredentials = {
 const REMEMBER_KEY = 'remember_me'
 
 export const useAuthStore = defineStore('auth', () => {
-  const isAuthenticated = ref<boolean>(false)
+  const isAuthenticated = ref(false)
 
   async function login(credentials: LoginCredentials, rememberMe: boolean): Promise<void> {
     try {
@@ -29,8 +29,8 @@ export const useAuthStore = defineStore('auth', () => {
 
         isAuthenticated.value = true
       }
-    } catch (err) {
-      console.error('API Connection Failure: /auth/login', err)
+    } catch (error) {
+      console.error('API Connection Failure: /auth/login', error)
     }
   }
 
@@ -44,8 +44,8 @@ export const useAuthStore = defineStore('auth', () => {
         console.log('Session restored')
         isAuthenticated.value = true
       }
-    } catch (err) {
-      console.warn('Stored session cookie has expired or was rejected', err)
+    } catch (error) {
+      console.warn('Stored session cookie has expired or was rejected', error)
       localStorage.removeItem(REMEMBER_KEY)
     }
   }
@@ -53,8 +53,8 @@ export const useAuthStore = defineStore('auth', () => {
   async function logout(): Promise<void> {
     try {
       await api.post('/auth/logout')
-    } catch (err) {
-      console.error('API Connection Failure: /auth/logout', err)
+    } catch (error) {
+      console.error('API Connection Failure: /auth/logout', error)
     } finally {
       isAuthenticated.value = false
     }

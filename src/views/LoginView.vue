@@ -3,15 +3,15 @@ import { ref, onMounted, useTemplateRef } from 'vue'
 import { t } from '@/locales.ts'
 import { useAuthStore } from '@/stores/auth.ts'
 
-const username = ref<string>('')
-const password = ref<string>('')
-const rememberMe = ref<boolean>(false)
-const isLoading = ref<boolean>(false)
+const username = ref('')
+const password = ref('')
+const rememberMe = ref(false)
+const isLoading = ref(false)
 
-const isUsernameMissing = ref<boolean>(false)
-const isPasswordMissing = ref<boolean>(false)
+const isUsernameMissing = ref(false)
+const isPasswordMissing = ref(false)
 
-const usernameInputRef = useTemplateRef<HTMLInputElement>('usernameInput')
+const usernameInputRef = useTemplateRef('usernameInput')
 const authStore = useAuthStore()
 
 onMounted(() => {
