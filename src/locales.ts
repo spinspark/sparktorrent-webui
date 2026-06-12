@@ -8,6 +8,9 @@ type LocaleDictionary = {
 type LocaleNode = LocaleDictionary | string | undefined
 
 export const currentLocale = ref('en')
+export const currentLang = computed(() => {
+  return currentLocale.value.split('-')[0] || 'en'
+})
 export const isLocaleLoaded = ref(false)
 
 const loadedMessages = new Map<string, LocaleDictionary>()
