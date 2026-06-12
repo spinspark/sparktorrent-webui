@@ -17,7 +17,7 @@ const setFilter = (filterName: string) => {
 <template>
   <aside class="sidebar">
     <div class="brand-section">
-      <img src="/images/qbittorrent-tray.svg" class="app-logo" alt="qBittorrent Logo" />
+      <img src="@/assets/images/logo.svg" class="app-logo" alt="qBittorrent Logo" />
       <h1 class="brand-name">
         qBittorrent <span class="version-tag">{{ appStore.version }}</span>
       </h1>

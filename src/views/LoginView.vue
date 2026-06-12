@@ -47,7 +47,7 @@ function clearWarnings() {
   <div class="login-viewport">
     <div class="login-card">
       <div class="card-header">
-        <img class="app-logo" src="/images/qbittorrent-tray.svg" alt="qBittorrent logo" />
+        <img class="app-logo" src="@/assets/images/logo.svg" alt="qBittorrent logo" />
         <h1 class="card-title">{{ t('login.title') }}</h1>
       </div>
       <form @submit.prevent="handleLoginSubmit" class="login-form">
