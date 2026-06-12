@@ -1,15 +1,11 @@
 <script setup lang="ts">
-import { onMounted } from 'vue'
 import { useAppStore } from '@/stores/app.ts'
 import GlobalHeader from '@/components/GlobalHeader.vue'
 import SidebarNav from '@/components/SidebarNav.vue'
 import TorrentGrid from '@/components/TorrentGrid.vue'
 
 const appStore = useAppStore()
-
-onMounted(async () => {
-  await appStore.fetchVersion()
-})
+appStore.fetchVersion()
 </script>
 
 <template>

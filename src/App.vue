@@ -15,6 +15,8 @@ watchEffect(() => {
 </script>
 
 <template>
-  <LoginView v-if="!authStore.isAuthenticated" />
-  <DashboardView v-else />
+  <div class="app-container">
+    <LoginView v-if="!authStore.isAuthenticated" />
+    <DashboardView v-else />
+  </div>
 </template>
