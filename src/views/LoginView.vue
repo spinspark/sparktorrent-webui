@@ -124,7 +124,7 @@ function clearWarnings() {
   width: 48px;
   height: 48px;
   color: #2563eb;
-  margin-bottom: 12px;
+  margin: 0 auto 12px;
 }
 
 .card-title {
