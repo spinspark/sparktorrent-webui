@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { useAppStore } from '@/stores/app.ts'
+import { useAppStore } from '@/stores/app'
 import IconAll from '@/components/icons/IconAll.vue'
 import IconArrowDown from '@/components/icons/IconArrowDown.vue'
 import IconCheck from '@/components/icons/IconCheck.vue'

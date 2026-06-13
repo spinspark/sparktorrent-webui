@@ -1,16 +1,22 @@
 <script setup lang="ts">
 import { watchEffect } from 'vue'
-import { currentLang, isLocaleLoaded, t } from '@/locales.ts'
-import { useAuthStore } from '@/stores/auth.ts'
+import { useLocaleStore } from '@/stores/locale'
+import { useAuthStore } from '@/stores/auth'
 import LoginView from '@/views/LoginView.vue'
 import DashboardView from '@/views/DashboardView.vue'
 
+const localeStore = useLocaleStore()
+localeStore.initializeLanguage()
+
 const authStore = useAuthStore()
+authStore.initSessionCheck()
+
+const { t } = localeStore
 
 watchEffect(() => {
-  if (isLocaleLoaded.value) {
-    document.documentElement.lang = currentLang.value
-    document.title = t('system.title').value
+  if (localeStore.isLocaleLoaded) {
+    document.documentElement.lang = localeStore.lang
+    document.title = t('system.title')
   }
 })
 </script>

@@ -34,20 +34,21 @@ export const useAuthStore = defineStore('auth', () => {
     }
   }
 
-  async function initSessionCheck(): Promise<void> {
+  function initSessionCheck() {
     if (localStorage.getItem(REMEMBER_KEY) !== 'true') return
 
-    try {
-      const response = await api.get('/app/version')
-
-      if (response.status === 200 || response.status === 204) {
-        console.log('Session restored')
-        isAuthenticated.value = true
-      }
-    } catch (error) {
-      console.warn('Stored session cookie has expired or was rejected', error)
-      localStorage.removeItem(REMEMBER_KEY)
-    }
+    api
+      .get('/app/version')
+      .then((response) => {
+        if (response.status === 200 || response.status === 204) {
+          console.log('Session restored')
+          isAuthenticated.value = true
+        }
+      })
+      .catch((error) => {
+        console.warn('Stored session cookie has expired or was rejected', error)
+        localStorage.removeItem(REMEMBER_KEY)
+      })
   }
 
   async function logout(): Promise<void> {

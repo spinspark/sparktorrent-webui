@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, onMounted, useTemplateRef } from 'vue'
-import { t } from '@/locales.ts'
-import { useAuthStore } from '@/stores/auth.ts'
+import { useLocaleStore } from '@/stores/locale'
+import { useAuthStore } from '@/stores/auth'
 
 const username = ref('')
 const password = ref('')
@@ -13,6 +13,8 @@ const isPasswordMissing = ref(false)
 
 const usernameInputRef = useTemplateRef('usernameInput')
 const authStore = useAuthStore()
+
+const { t } = useLocaleStore()
 
 onMounted(() => {
   usernameInputRef.value?.focus()
