@@ -7,7 +7,7 @@ type LoginCredentials = {
   password: string
 }
 
-const REMEMBER_KEY = 'remember_me'
+const REMEMBER_KEY = 'remember-me'
 
 export const useAuthStore = defineStore('auth', () => {
   const isAuthenticated = ref(false)
