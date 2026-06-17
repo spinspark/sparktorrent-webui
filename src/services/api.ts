@@ -10,8 +10,8 @@ api.interceptors.response.use(
   (response) => response,
   (error) => {
     if (error.response.status === 401) {
-      const authStore = useAuthStore()
-      authStore.isAuthenticated = false
+      const auth = useAuthStore()
+      auth.isAuthenticated = false
     }
     return Promise.reject(error)
   },

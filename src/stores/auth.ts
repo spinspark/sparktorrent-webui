@@ -4,6 +4,7 @@ import api from '@/services/api'
 
 export const useAuthStore = defineStore('auth', () => {
   const isAuthenticated = ref(false)
+  const isInitialized = ref(false)
 
   async function login(
     username: MaybeRefOrGetter<string>,
@@ -25,33 +26,36 @@ export const useAuthStore = defineStore('auth', () => {
         isAuthenticated.value = true
       }
     } catch (error) {
-      console.error('API Connection Failure: /auth/login', error)
+      console.error('Failed to login', error)
     }
   }
 
-  function initSessionCheck() {
-    api
-      .get('/app/version')
-      .then((response) => {
-        if (response.status === 200 || response.status === 204) {
-          console.log('Session restored')
-          isAuthenticated.value = true
-        }
-      })
-      .catch((error) => {
-        console.warn('Stored session cookie has expired or was rejected', error)
-      })
+  async function initializeSession() {
+    if (isInitialized.value) return
+
+    try {
+      const response = await api.get('/app/version')
+
+      if (response.status === 200 || response.status === 204) {
+        isAuthenticated.value = true
+      }
+    } catch {
+      // Do nothing
+    } finally {
+      isInitialized.value = false
+    }
   }
+
 
   async function logout(): Promise<void> {
     try {
       await api.post('/auth/logout')
     } catch (error) {
-      console.error('API Connection Failure: /auth/logout', error)
+      console.error('Failed to logout', error)
     } finally {
       isAuthenticated.value = false
     }
   }
 
-  return { isAuthenticated, login, initSessionCheck, logout }
+  return { isAuthenticated, login, initializeSession, logout }
 })

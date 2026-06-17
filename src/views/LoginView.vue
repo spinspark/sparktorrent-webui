@@ -1,7 +1,13 @@
 <script setup lang="ts">
-import { ref, onMounted, useTemplateRef } from 'vue'
-import { useLocaleStore } from '@/stores/locale'
+import { onMounted, ref, useTemplateRef } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
 import { useAuthStore } from '@/stores/auth'
+import { useLocaleStore } from '@/stores/locale'
+
+const router = useRouter()
+const route = useRoute()
+const auth = useAuthStore()
+const { t } = useLocaleStore()
 
 const username = ref('')
 const password = ref('')
@@ -11,9 +17,6 @@ const isUsernameMissing = ref(false)
 const isPasswordMissing = ref(false)
 
 const usernameInputRef = useTemplateRef('usernameInput')
-const authStore = useAuthStore()
-
-const { t } = useLocaleStore()
 
 onMounted(() => {
   usernameInputRef.value?.focus()
@@ -27,9 +30,16 @@ async function handleLoginSubmit() {
 
   isLoading.value = true
 
-  await authStore.login(username, password)
+  try {
+    await auth.login(username, password)
 
-  isLoading.value = false
+    const redirectTo = (route.query.redirect as string) || '/'
+    await router.push(redirectTo)
+  } catch (error) {
+    console.error('Failed to login', error)
+  } finally {
+    isLoading.value = false
+  }
 }
 
 function clearWarnings() {

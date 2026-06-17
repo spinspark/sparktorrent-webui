@@ -1,10 +1,17 @@
 <script setup lang="ts">
+import { useRouter } from 'vue-router'
 import { useAuthStore } from '@/stores/auth'
 import IconLogout from './icons/IconLogout.vue'
 import IconDownload from '@/components/icons/IconDownload.vue'
 import IconUpload from '@/components/icons/IconUpload.vue'
 
-const authStore = useAuthStore()
+const router = useRouter()
+const auth = useAuthStore()
+
+async function handleLogoutClick() {
+  await auth.logout()
+  router.push('/login')
+}
 </script>
 
 <template>
@@ -24,7 +31,7 @@ const authStore = useAuthStore()
         <span class="label">Disk Free: </span>
         <span class="value">240.5 GB</span>
       </div>
-      <button @click="authStore.logout" class="logout-btn">
+      <button @click="handleLogoutClick" class="logout-btn">
         <IconLogout />
         <span>Logout</span>
       </button>
