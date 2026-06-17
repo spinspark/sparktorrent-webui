@@ -1,32 +1,27 @@
-import { ref } from 'vue'
+import { type MaybeRefOrGetter, ref, toValue } from 'vue'
 import { defineStore } from 'pinia'
 import api from '@/services/api'
-
-type LoginCredentials = {
-  username: string
-  password: string
-}
-
-const REMEMBER_KEY = 'remember-me'
 
 export const useAuthStore = defineStore('auth', () => {
   const isAuthenticated = ref(false)
 
-  async function login(credentials: LoginCredentials, rememberMe: boolean): Promise<void> {
+  async function login(
+    username: MaybeRefOrGetter<string>,
+    password: MaybeRefOrGetter<string>,
+  ): Promise<void> {
     try {
-      const response = await api.post('/auth/login', credentials, {
+      const payload = {
+        username: toValue(username),
+        password: toValue(password),
+      }
+
+      const response = await api.post('/auth/login', payload, {
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded',
         },
       })
 
       if (response.status === 200 || response.status === 204) {
-        if (rememberMe) {
-          localStorage.setItem(REMEMBER_KEY, 'true')
-        } else {
-          localStorage.removeItem(REMEMBER_KEY)
-        }
-
         isAuthenticated.value = true
       }
     } catch (error) {
@@ -35,8 +30,6 @@ export const useAuthStore = defineStore('auth', () => {
   }
 
   function initSessionCheck() {
-    if (localStorage.getItem(REMEMBER_KEY) !== 'true') return
-
     api
       .get('/app/version')
       .then((response) => {
@@ -47,7 +40,6 @@ export const useAuthStore = defineStore('auth', () => {
       })
       .catch((error) => {
         console.warn('Stored session cookie has expired or was rejected', error)
-        localStorage.removeItem(REMEMBER_KEY)
       })
   }
 

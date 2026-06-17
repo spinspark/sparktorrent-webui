@@ -5,7 +5,6 @@ import { useAuthStore } from '@/stores/auth'
 
 const username = ref('')
 const password = ref('')
-const rememberMe = ref(false)
 const isLoading = ref(false)
 
 const isUsernameMissing = ref(false)
@@ -28,13 +27,7 @@ async function handleLoginSubmit() {
 
   isLoading.value = true
 
-  await authStore.login(
-    {
-      username: username.value,
-      password: password.value,
-    },
-    rememberMe.value,
-  )
+  await authStore.login(username, password)
 
   isLoading.value = false
 }
@@ -79,12 +72,6 @@ function clearWarnings() {
             :disabled="isLoading"
             autocomplete="current-password"
           />
-        </div>
-        <div class="remember-row">
-          <label class="checkbox-container">
-            <input v-model="rememberMe" type="checkbox" :disabled="isLoading" />
-            <span class="checkbox-label">{{ t('login.rememberMe') }}</span>
-          </label>
         </div>
         <button type="submit" class="submit-btn" :disabled="isLoading">
           {{ t('login.submit') }}
@@ -181,33 +168,6 @@ function clearWarnings() {
 
 .form-input.missing:focus {
   box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
-}
-
-.remember-row {
-  display: flex;
-  align-items: center;
-  margin: -4px 0 4px 0;
-}
-
-.checkbox-container {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  cursor: pointer;
-  user-select: none;
-}
-
-.checkbox-label {
-  font-size: 0.85rem;
-  font-weight: 500;
-  color: #64748b;
-}
-
-.checkbox-container input {
-  cursor: pointer;
-  width: 16px;
-  height: 16px;
-  accent-color: #2563eb;
 }
 
 .submit-btn {

@@ -1,6 +1,5 @@
 /* --- Global Tokens --- */
 :root {
-
 }
 
 /* --- Light Theme (Default Layout Colors) --- */
@@ -12,9 +11,9 @@
 }
 
 /* --- Dark Theme (Override Layout Colors) --- */
-[data-theme="dark"] {
+[data-theme='dark'] {
   /* Slate 900 */
   --color-bg: #0f172a;
   /* Slate 50 */
-  --color-text: #f8fafc
+  --color-text: #f8fafc;
 }

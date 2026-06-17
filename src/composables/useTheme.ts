@@ -4,9 +4,7 @@ type ThemePreference = 'light' | 'dark' | 'auto'
 
 const THEME_KEY = 'theme-preference'
 
-const themePreference = ref(
-  localStorage.getItem(THEME_KEY) as ThemePreference || 'auto'
-)
+const themePreference = ref((localStorage.getItem(THEME_KEY) as ThemePreference) || 'auto')
 
 export function useTheme() {
   const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)')
@@ -44,5 +42,5 @@ export function useTheme() {
     mediaQuery.removeEventListener('change', handleSystemChange)
   }
 
-  return {themePreference, setTheme, initializeTheme, cleanupTheme}
+  return { themePreference, setTheme, initializeTheme, cleanupTheme }
 }
