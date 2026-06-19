@@ -1,13 +1,11 @@
 <script setup lang="ts">
-import { onMounted, onUnmounted, watchEffect } from 'vue'
+import { watchEffect } from 'vue'
 import { useLocaleStore } from '@/stores/locale'
-import { useTheme } from '@/composables/useTheme'
 
 const localeStore = useLocaleStore()
 localeStore.initializeLanguage()
 
 const { t } = localeStore
-const { initializeTheme, cleanupTheme } = useTheme()
 
 watchEffect(() => {
   if (localeStore.isLocaleLoaded) {
@@ -16,13 +14,6 @@ watchEffect(() => {
   }
 })
 
-onMounted(() => {
-  initializeTheme()
-})
-
-onUnmounted(() => {
-  cleanupTheme()
-})
 </script>
 
 <template>

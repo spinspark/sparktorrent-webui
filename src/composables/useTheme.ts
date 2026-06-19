@@ -1,46 +1,51 @@
-import { ref } from 'vue'
+import { computed, effectScope, ref, watchEffect } from 'vue'
 
-type ThemePreference = 'light' | 'dark' | 'auto'
+type ThemeChoice = 'light' | 'dark' | 'auto'
+type ActiveTheme = 'light' | 'dark'
 
-const THEME_KEY = 'theme-preference'
+const themeChoice = ref<ThemeChoice>('auto')
+const isSystemDark = ref(false)
+let isInitialized = false
 
-const themePreference = ref((localStorage.getItem(THEME_KEY) as ThemePreference) || 'auto')
+const activeTheme = computed<ActiveTheme>(() => {
+  if (themeChoice.value === 'auto') {
+    return isSystemDark.value ? 'dark' : 'light'
+  }
+  return themeChoice.value as ActiveTheme
+})
 
 export function useTheme() {
-  const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)')
-
-  const calculateActiveTheme = () => {
-    if (themePreference.value === 'auto') {
-      return mediaQuery.matches ? 'dark' : 'light'
-    }
-    return themePreference.value
-  }
-
-  const updateTheme = () => {
-    const activeTheme = calculateActiveTheme()
-    document.documentElement.setAttribute('data-theme', activeTheme)
-  }
-
-  const handleSystemChange = () => {
-    if (themePreference.value === 'auto') {
-      updateTheme()
+  const setTheme = (mode: ThemeChoice) => {
+    themeChoice.value = mode
+    if (typeof themeChoice.value !== 'undefined') {
+      localStorage.setItem('theme', mode)
     }
   }
 
-  const setTheme = (preference: ThemePreference) => {
-    themePreference.value = preference
-    localStorage.setItem(THEME_KEY, preference)
-    updateTheme()
+  if (!isInitialized && typeof window !== 'undefined') {
+    const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)')
+
+    themeChoice.value = (localStorage.getItem('theme') as ThemeChoice) || 'auto'
+    isSystemDark.value = systemPrefersDark.matches
+
+    systemPrefersDark.addEventListener('change', (event) => {
+      isSystemDark.value = event.matches
+    })
+
+    window.addEventListener('storage', (event) => {
+      if (event.key === 'theme') {
+        themeChoice.value = (event.newValue as ThemeChoice) || 'auto'
+      }
+    })
+
+    effectScope(true).run(() => {
+      watchEffect(() => {
+        document.documentElement.setAttribute('data-theme', activeTheme.value)
+      })
+    })
+
+    isInitialized = true
   }
 
-  const initializeTheme = () => {
-    updateTheme()
-    mediaQuery.addEventListener('change', handleSystemChange)
-  }
-
-  const cleanupTheme = () => {
-    mediaQuery.removeEventListener('change', handleSystemChange)
-  }
-
-  return { themePreference, setTheme, initializeTheme, cleanupTheme }
+  return { themeChoice, activeTheme, setTheme }
 }
