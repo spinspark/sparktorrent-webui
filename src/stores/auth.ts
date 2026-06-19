@@ -30,7 +30,7 @@ export const useAuthStore = defineStore('auth', () => {
     }
   }
 
-  async function initializeSession() {
+  async function initSession() {
     if (isInitialized.value) return
 
     try {
@@ -57,5 +57,5 @@ export const useAuthStore = defineStore('auth', () => {
     }
   }
 
-  return { isAuthenticated, login, initializeSession, logout }
+  return { isAuthenticated, login, initSession, logout }
 })

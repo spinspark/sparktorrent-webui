@@ -1,11 +1,15 @@
 <script setup lang="ts">
-import { useAppStore } from '@/stores/app'
+import { onMounted } from 'vue'
+import { useSystemStore } from '@/stores/system'
+
 import GlobalHeader from '@/components/GlobalHeader.vue'
 import SidebarNav from '@/components/SidebarNav.vue'
 import TorrentGrid from '@/components/TorrentGrid.vue'
 
-const appStore = useAppStore()
-appStore.fetchVersion()
+const system = useSystemStore()
+onMounted(() => {
+  system.initSystemInfo()
+})
 </script>
 
 <template>

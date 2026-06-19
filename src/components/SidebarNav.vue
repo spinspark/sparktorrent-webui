@@ -1,11 +1,12 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { useAppStore } from '@/stores/app'
+import { useSystemStore } from '@/stores/system'
+
 import IconAll from '@/components/icons/IconAll.vue'
 import IconArrowDown from '@/components/icons/IconArrowDown.vue'
 import IconCheck from '@/components/icons/IconCheck.vue'
 
-const appStore = useAppStore()
+const system = useSystemStore()
 
 const currentFilter = ref('all')
 
@@ -19,7 +20,7 @@ const setFilter = (filterName: string) => {
     <div class="brand-section">
       <img src="@/assets/images/logo.svg" class="app-logo" alt="qBittorrent Logo" />
       <h1 class="brand-name">
-        qBittorrent <span class="version-tag">{{ appStore.version }}</span>
+        qBittorrent <span class="version-tag">{{ system.appVersion }}</span>
       </h1>
     </div>
     <nav class="nav-menu">
