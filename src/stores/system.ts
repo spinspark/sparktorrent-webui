@@ -12,7 +12,7 @@ export const useSystemStore = defineStore('system', () => {
     try {
       const response = await api.get('/app/version', { responseType: 'text' })
 
-      if (response.status === 200 || response.status === 204) {
+      if (response.status === 200) {
         appVersion.value = response.data
       }
     } catch (error) {

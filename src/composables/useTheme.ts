@@ -1,7 +1,7 @@
 import { computed, effectScope, ref, watchEffect } from 'vue'
 
-type ThemeChoice = 'light' | 'dark' | 'auto'
 type ActiveTheme = 'light' | 'dark'
+type ThemeChoice = ActiveTheme | 'auto'
 
 const themeChoice = ref<ThemeChoice>('auto')
 const isSystemDark = ref(false)

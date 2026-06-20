@@ -22,7 +22,7 @@ export const useAuthStore = defineStore('auth', () => {
         },
       })
 
-      if (response.status === 200 || response.status === 204) {
+      if (response.status === 204) {
         isAuthenticated.value = true
       }
     } catch (error) {
@@ -36,7 +36,7 @@ export const useAuthStore = defineStore('auth', () => {
     try {
       const response = await api.get('/app/version')
 
-      if (response.status === 200 || response.status === 204) {
+      if (response.status === 200) {
         isAuthenticated.value = true
       }
     } catch {
