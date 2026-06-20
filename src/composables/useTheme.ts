@@ -17,7 +17,7 @@ const activeTheme = computed<ActiveTheme>(() => {
 export function useTheme() {
   const setTheme = (mode: ThemeChoice) => {
     themeChoice.value = mode
-    if (typeof themeChoice.value !== 'undefined') {
+    if (typeof window !== 'undefined') {
       localStorage.setItem('theme', mode)
     }
   }
