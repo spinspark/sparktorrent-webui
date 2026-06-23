@@ -1,12 +1,10 @@
 {
   "system": {
-    "title": "qBittorrent WebUI"
+    "title": "qBittorrent"
   },
   "login": {
-    "title": "Sign In",
     "username": "Username",
     "password": "Password",
-    "rememberMe": "Keep me signed in",
     "submit": "Login"
   }
 }

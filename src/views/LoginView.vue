@@ -51,10 +51,10 @@ function clearWarnings() {
 <template>
   <div class="login-viewport">
     <div class="login-card">
-      <div class="card-header">
+      <header class="card-header">
         <img class="app-logo" src="@/assets/images/logo.svg" alt="qBittorrent logo" />
-        <h1 class="card-title">{{ t('login.title') }}</h1>
-      </div>
+        <h1 class="card-title">{{ t('system.title') }}</h1>
+      </header>
       <form @submit.prevent="handleLoginSubmit" class="login-form">
         <div class="form-group">
           <label for="username" class="input-label">{{ t('login.username') }}</label>
@@ -95,36 +95,43 @@ function clearWarnings() {
 .login-viewport {
   width: 100vw;
   height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: grid;
+  place-items: center;
+  padding: 1.5rem;
 }
 
 .login-card {
   width: 100%;
-  max-width: var(--container-sm);
-  background: #ffffff;
-  padding: 32px;
-  border-radius: var(--radius-xl);
-  border: 1px solid #e2e8f0;
-  box-shadow: var(--shadow-md);
+  background-color: #ffffff;
+  padding: 2rem;
+}
+
+@media (min-width: 600px) {
+  .login-card {
+    width: var(--container-sm);
+    min-height: auto;
+    border: 1px solid #e2e8f0;
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-md);
+  }
 }
 
 .card-header {
   text-align: center;
-  margin-bottom: 24px;
+  margin-bottom: 1.5rem;
 }
 
 .app-logo {
-  width: 48px;
-  height: 48px;
+  width: 3rem;
+  height: 3rem;
   color: #2563eb;
-  margin: 0 auto 12px;
+  margin: 0 auto 0.75rem;
 }
 
 .card-title {
-  font-size: 1.35rem;
-  font-weight: 700;
+  font-size: var(--text-2xl);
+  line-height: var(--text-2xl--line-height);
+  font-weight: var(--font-weight-bold);
   color: #1e293b;
   margin: 0;
 }
@@ -132,23 +139,24 @@ function clearWarnings() {
 .login-form {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 1rem;
 }
 
 .form-group {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 0.375rem;
 }
 
 .input-label {
-  font-size: 0.85rem;
-  font-weight: 600;
+  font-size: var(--text-sm);
+  line-height: var(--text-sm--line-height);
+  font-weight: var(--font-weight-semibold);
   color: #475569;
 }
 
 .form-input {
-  padding: 10px 14px;
+  padding: 0.625rem 0.875rem;
   border-radius: var(--radius-md);
   border: 1px solid #cbd5e1;
   background-color: #ffffff;
@@ -176,9 +184,9 @@ function clearWarnings() {
 }
 
 .submit-btn {
-  margin-top: 8px;
-  padding: 12px;
-  font-weight: 600;
+  margin-top: 0.5rem;
+  padding: 0.75rem;
+  font-weight: var(--font-weight-semibold);
   background-color: #2563eb;
   color: #ffffff;
   border: none;
