@@ -17,8 +17,8 @@
 
 <style scoped>
 .feather-icon {
-  width: 16px;
-  height: 16px;
+  width: 1rem;
+  height: 1rem;
   display: inline-block;
   vertical-align: middle;
 }

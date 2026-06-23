@@ -103,7 +103,7 @@ const setFilter = (filterName: string) => {
   font-size: 11px;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: var(--tracking-wider);
   color: #475569;
   padding-left: 12px;
   margin-bottom: 8px;
@@ -116,7 +116,7 @@ const setFilter = (filterName: string) => {
   padding: 10px 12px;
   background: transparent;
   border: none;
-  border-radius: 8px;
+  border-radius: var(--radius-lg);
   color: #94a3b8;
   cursor: pointer;
   text-align: left;
@@ -151,7 +151,7 @@ const setFilter = (filterName: string) => {
   font-size: 11px;
   font-weight: 600;
   padding: 2px 8px;
-  border-radius: 12px;
+  border-radius: var(--radius-xl);
 }
 
 .nav-item.active .count-badge {

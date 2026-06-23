@@ -87,7 +87,7 @@ async function handleLogoutClick() {
   border: 1px solid #ef444455;
   color: #f87171;
   padding: 6px 12px;
-  border-radius: 6px;
+  border-radius: var(--radius-md);
   cursor: pointer;
   font-size: 13px;
   font-weight: 500;

@@ -32,10 +32,6 @@ onMounted(() => {
   grid-template-columns: 260px 1fr;
   background-color: #0f172a;
   color: #f8fafc;
-  font-family:
-    system-ui,
-    -apple-system,
-    sans-serif;
 }
 
 .dashboard-main {

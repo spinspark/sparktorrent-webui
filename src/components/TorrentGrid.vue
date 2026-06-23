@@ -112,7 +112,7 @@ const formatPercent = (val: number) => `${(val * 100).toFixed(1)}%`
   font-size: 12px;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: var(--tracking-wider);
 }
 
 .grid-body {
@@ -124,7 +124,7 @@ const formatPercent = (val: number) => `${(val * 100).toFixed(1)}%`
 .torrent-row {
   background-color: #0f172a;
   border: 1px solid #1e293b;
-  border-radius: 8px;
+  border-radius: var(--radius-lg);
   padding: 14px 16px;
   transition: all 0.15s ease;
 }
@@ -171,14 +171,14 @@ const formatPercent = (val: number) => `${(val * 100).toFixed(1)}%`
   width: 100%;
   height: 6px;
   background-color: #020617; /* Slate 950 */
-  border-radius: 4px;
+  border-radius: var(--radius-sm);
   overflow: hidden;
 }
 
 .progress-fill {
   height: 100%;
   background-color: #38bdf8;
-  border-radius: 4px;
+  border-radius: var(--radius-sm);
   transition: width 0.3s ease;
 }
 
@@ -197,7 +197,7 @@ const formatPercent = (val: number) => `${(val * 100).toFixed(1)}%`
   font-weight: 700;
   text-transform: uppercase;
   padding: 1px 6px;
-  border-radius: 4px;
+  border-radius: var(--radius-sm);
   background-color: #334155;
   color: #94a3b8;
 }
@@ -240,7 +240,7 @@ const formatPercent = (val: number) => `${(val * 100).toFixed(1)}%`
   background-color: #020617;
   border: 1px solid #1e293b;
   color: #94a3b8;
-  border-radius: 6px;
+  border-radius: var(--radius-md);
   cursor: pointer;
   transition: all 0.15s ease;
 }

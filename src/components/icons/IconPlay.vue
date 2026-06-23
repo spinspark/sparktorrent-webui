@@ -10,8 +10,8 @@
 </template>
 <style scoped>
 .feather-icon {
-  width: 14px;
-  height: 14px;
+  width: 0.875rem;
+  height: 0.875rem;
   display: inline-block;
   vertical-align: middle;
 }

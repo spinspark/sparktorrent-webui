@@ -98,20 +98,16 @@ function clearWarnings() {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family:
-    system-ui,
-    -apple-system,
-    sans-serif;
 }
 
 .login-card {
   width: 100%;
-  max-width: 360px;
+  max-width: var(--container-sm);
   background: #ffffff;
   padding: 32px;
-  border-radius: 12px;
+  border-radius: var(--radius-xl);
   border: 1px solid #e2e8f0;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+  box-shadow: var(--shadow-md);
 }
 
 .card-header {
@@ -153,8 +149,7 @@ function clearWarnings() {
 
 .form-input {
   padding: 10px 14px;
-  font-size: 0.95rem;
-  border-radius: 6px;
+  border-radius: var(--radius-md);
   border: 1px solid #cbd5e1;
   background-color: #ffffff;
   color: #1e293b;
@@ -183,12 +178,11 @@ function clearWarnings() {
 .submit-btn {
   margin-top: 8px;
   padding: 12px;
-  font-size: 0.95rem;
   font-weight: 600;
   background-color: #2563eb;
   color: #ffffff;
   border: none;
-  border-radius: 6px;
+  border-radius: var(--radius-md);
   cursor: pointer;
   transition: border-color 0.15s ease;
 }
