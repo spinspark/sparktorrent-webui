@@ -102,15 +102,16 @@ function clearWarnings() {
 
 .login-card {
   width: 100%;
-  background-color: #ffffff;
+  background-color: var(--bg-canvas);
   padding: 2rem;
 }
 
 @media (min-width: 600px) {
   .login-card {
+    background-color: var(--bg-surface);
     width: var(--container-sm);
     min-height: auto;
-    border: 1px solid #e2e8f0;
+    border: 1px solid var(--border-strong);
     border-radius: var(--radius-xl);
     box-shadow: var(--shadow-md);
   }
@@ -124,7 +125,6 @@ function clearWarnings() {
 .app-logo {
   width: 3rem;
   height: 3rem;
-  color: #2563eb;
   margin: 0 auto 0.75rem;
 }
 
@@ -132,7 +132,7 @@ function clearWarnings() {
   font-size: var(--text-2xl);
   line-height: var(--text-2xl--line-height);
   font-weight: var(--font-weight-bold);
-  color: #1e293b;
+  color: var(--text-main);
   margin: 0;
 }
 
@@ -152,43 +152,44 @@ function clearWarnings() {
   font-size: var(--text-sm);
   line-height: var(--text-sm--line-height);
   font-weight: var(--font-weight-semibold);
-  color: #475569;
+  color: var(--text-muted);
 }
 
 .form-input {
   padding: 0.625rem 0.875rem;
   border-radius: var(--radius-md);
-  border: 1px solid #cbd5e1;
-  background-color: #ffffff;
-  color: #1e293b;
+  border: 1px solid var(--border-strong);
+  background-color: var(--bg-surface);
+  color: var(--text-main);
   transition: border-color 0.15s ease;
 }
 
 .form-input:focus {
   outline: none;
-  border-color: #2563eb;
+  border-color: var(--accent-main);
 }
 
 .form-input:disabled {
-  background-color: #f1f5f9;
-  color: #94a3b8;
+  background-color: var(--bg-disabled);
+  color: var(--text-disabled);
+  border-color: var(--border-disabled);
   cursor: not-allowed;
 }
 
 .form-input.missing {
-  border-color: #ef4444;
+  border-color: var(--border-error);
 }
 
 .form-input.missing:focus {
-  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+  border-color: var(--border-error-focus);
 }
 
 .submit-btn {
   margin-top: 0.5rem;
   padding: 0.75rem;
   font-weight: var(--font-weight-semibold);
-  background-color: #2563eb;
-  color: #ffffff;
+  background-color: var(--accent-main);
+  color: var(--text-on-accent);
   border: none;
   border-radius: var(--radius-md);
   cursor: pointer;
@@ -196,11 +197,12 @@ function clearWarnings() {
 }
 
 .submit-btn:hover:not(:disabled) {
-  background-color: #1d4ed8;
+  background-color: var(--accent-hover);
 }
 
 .submit-btn:disabled {
-  background-color: #94a3b8;
+  background-color: var(--accent-disabled);
+  color: var(--text-on-accent-disabled);
   cursor: not-allowed;
 }
 </style>
